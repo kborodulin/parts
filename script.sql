@@ -1,11 +1,11 @@
 USE test;
 DROP TABLE IF EXISTS part; 
 CREATE TABLE part (
-  partid INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(500) NOT NULL COMMENT 'Наименование',
   necessity TINYINT NOT NULL DEFAULT 0 COMMENT 'Необходимость',
   amount INT NOT NULL DEFAULT 0 COMMENT 'Количество',
-  PRIMARY KEY (partid),
+  PRIMARY KEY (id),
   UNIQUE INDEX name_UNIQUE (name ASC))
 ENGINE = InnoDB;
 
