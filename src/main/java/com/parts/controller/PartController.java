@@ -6,32 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PartController {
     @Autowired
     private PartService partService;
 
+    private int page() {
+        int allRecord = partService.listAllPart().size();
+        return (allRecord % 10 == 0) ? allRecord / 10 : allRecord / 10 + 1;
+    }
+
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String listPart(Model model) {
-        int allRecord = partService.listAllPart().size();
-        int countPage = (allRecord % 10 == 0) ? allRecord / 10 : allRecord / 10 + 1;
         model.addAttribute("listPart", partService.listPart(1));
-        model.addAttribute("countPage", countPage);
+        model.addAttribute("countPage", page());
         model.addAttribute("countComp", partService.getSobrCountComp());
         return "index";
     }
 
     @RequestMapping(value = "index{page}", method = RequestMethod.GET)
     public String listPartPage(Model model, @PathVariable("page") int page) {
-        int allRecord = partService.listAllPart().size();
-        int countPage = (allRecord % 10 == 0) ? allRecord / 10 : allRecord / 10 + 1;
         model.addAttribute("listPart", partService.listPart(page));
-        model.addAttribute("countPage", countPage);
+        model.addAttribute("countPage", page());
         model.addAttribute("countComp", partService.getSobrCountComp());
         return "index";
     }
@@ -58,5 +56,15 @@ public class PartController {
     public String updatePart(@ModelAttribute("part") Part part) {
         partService.updatePart(part);
         return "redirect:/index";
+    }
+
+    @RequestMapping(value = "find", method = RequestMethod.POST)
+    public String findPart(Model model, @RequestParam String finddetail) {
+        if (finddetail.equals(""))
+            return "redirect:/index";
+        model.addAttribute("listPart", partService.getFind(finddetail));
+        model.addAttribute("countPage", page());
+        model.addAttribute("countComp", partService.getSobrCountComp());
+        return "index";
     }
 }

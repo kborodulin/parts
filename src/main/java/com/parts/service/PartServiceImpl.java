@@ -41,4 +41,8 @@ public class PartServiceImpl implements PartService {
     public String getSobrCountComp() {
         return partDao.getSobrCountComp();
     }
+
+    public List<Part> getFind(String nameFind) {
+        return partDao.getFind(nameFind);
+    }
 }

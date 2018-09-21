@@ -18,4 +18,6 @@ public interface PartDao {
     List<Part> listPart(int page);
 
     String getSobrCountComp();
+
+    List<Part> getFind(String nameFind);
 }

@@ -54,4 +54,10 @@ public class PartDaoImpl implements PartDao {
         String cur = session.createQuery("SELECT MIN(amount) from Part WHERE necessity = 1").list().get(0).toString();
         return cur;
     }
+
+    public List<Part> getFind(String nameFind) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Part> findList = session.createQuery("from Part WHERE name like '%" + nameFind + "%'").list();
+        return findList;
+    }
 }
