@@ -37,7 +37,7 @@
     </tr>
     <c:forEach items="${listPart}" var="part">
         <tr>
-            <th>${part.id}</th>
+            <th>${part.id} </th>
             <th>${part.name}</th>
             <th>${part.necessity}</th>
             <th>${part.amount}</th>
