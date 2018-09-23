@@ -46,6 +46,14 @@ public class PartController {
         return "redirect:/index";
     }
 
+    @RequestMapping(value = "sort", method = RequestMethod.GET)
+    public String sortPart(Model model) {
+        model.addAttribute("listPart", partService.sortList(1));
+        model.addAttribute("countPage", page());
+        model.addAttribute("countComp", partService.getSobrCountComp());
+        return "index";
+    }
+
     @RequestMapping(value = "/part/add", method = RequestMethod.POST)
     public String addPart(@ModelAttribute("part") Part part) {
         partService.addPart(part);

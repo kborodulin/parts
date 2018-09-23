@@ -60,4 +60,10 @@ public class PartDaoImpl implements PartDao {
         List<Part> findList = session.createQuery("from Part WHERE name like '%" + nameFind + "%'").list();
         return findList;
     }
+
+    public List<Part> sortList(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Part> sortList = session.createQuery("from Part order by necessity desc, name").setFirstResult(page).setMaxResults(10).list();
+        return sortList;
+    }
 }

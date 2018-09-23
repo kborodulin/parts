@@ -45,4 +45,8 @@ public class PartServiceImpl implements PartService {
     public List<Part> getFind(String nameFind) {
         return partDao.getFind(nameFind);
     }
+
+    public List<Part> sortList(int page) {
+        return partDao.sortList(page);
+    }
 }

@@ -22,56 +22,59 @@
     </c:forEach>
 </table>
 
-<form method="post" action="find">
-    <table border="1" align="center">
-        <tr>
-            <th colspan="2" align="center">Поиск по детали</th>
-            <th colspan="3">
+<table border="1" align="center">
+    <tr>
+        <th colspan="2" align="center">Поиск по детали</th>
+        <form method="post" action="find">
+            <th colspan="2">
                 <input name="finddetail" type="text" size="70%"/>
             </th>
             <th>
-                <input type="submit" value="Поиск">
+                <input type="submit" value="   Поиск   " width="100%">
             </th>
-        </tr>
+            <th colspan="2">
+                <input type="button"  onclick="location.href='/sort'" value="Сортировать" >
+            </th>
+        </form>
+    </tr>
+    <tr>
+        <th colspan="6" height="20px"></th>
+    </tr>
+    <tr>
+        <th>ИД</th>
+        <th>Наименование</th>
+        <th>Необходимость</th>
+        <th>Количество</th>
+        <th>Изменить</th>
+        <th>Удалить</th>
+    </tr>
+    <c:forEach items="${listPart}" var="part">
         <tr>
-            <th colspan="6" height="20px"></th>
+            <th>${part.id} </th>
+            <th>${part.name}</th>
+            <th>${part.necessity}</th>
+            <th>${part.amount}</th>
+            <th><a href="/get/${part.id}">Изменить</a></th>
+            <th><a href="/delete/${part.id}">Удалить</a></th>
         </tr>
-        <tr>
-            <th>ИД</th>
-            <th>Наименование</th>
-            <th>Необходимость</th>
-            <th>Количество</th>
-            <th>Изменить</th>
-            <th>Удалить</th>
-        </tr>
-        <c:forEach items="${listPart}" var="part">
-            <tr>
-                <th>${part.id} </th>
-                <th>${part.name}</th>
-                <th>${part.necessity}</th>
-                <th>${part.amount}</th>
-                <th><a href="/get/${part.id}">Изменить</a></th>
-                <th><a href="/delete/${part.id}">Удалить</a></th>
-            </tr>
-        </c:forEach>
-        <tr>
-            <th height="20px"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>Можно собрать</th>
-            <th>${countComp}</th>
-            <th>компьютеров</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>
-</form>
+    </c:forEach>
+    <tr>
+        <th height="20px"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th>Можно собрать</th>
+        <th>${countComp}</th>
+        <th>компьютеров</th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
 
 <h3 align="center">Добавить новое устройство</h3>
 

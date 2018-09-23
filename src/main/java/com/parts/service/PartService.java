@@ -20,4 +20,6 @@ public interface PartService {
     String getSobrCountComp();
 
     List<Part> getFind(String nameFind);
+
+    List<Part> sortList(int page);
 }
